@@ -46,7 +46,7 @@ const Navbar = () => {
                 localStorage.removeItem("auth-token");
                 window.location.replace("/");
               }}>Logout</button>
-              <a href="https://e-commerce-mern-stack-admin1.vercel.app/" target="_blank" rel="noopener noreferrer">
+              <a href="https://e-commerce-mern-stack1admin4.vercel.app/" target="_blank" rel="noopener noreferrer">
                 <button className='admin-btn'>Admin</button>
               </a>
             </>
@@ -71,7 +71,7 @@ const Navbar = () => {
               localStorage.removeItem("auth-token");
               window.location.replace("/");
             }}>Logout</button>
-            <a href="https://e-commerce-mern-stack-admin1.vercel.app/" target="_blank" rel="noopener noreferrer">
+            <a href="https://e-commerce-mern-stack1admin4.vercel.app/" target="_blank" rel="noopener noreferrer">
               <button>Admin</button>
             </a>
           </>
