@@ -1,0 +1,92 @@
+.newsletter {
+  width: 84%;
+  padding: 60px 20px;
+  background: linear-gradient(180deg, #ffde59, #ff914d);
+  text-align: center;
+  border-radius: 20px;
+  color: #222;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  margin-top: 100px;
+  margin-left: 85px;
+}
+
+.newsletter h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.newsletter p {
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+  color: #444;
+}
+
+.newsletter-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.newsletter-input input[type='email'] {
+  padding: 12px 18px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  width: 280px;
+  max-width: 90%;
+  outline: none;
+}
+
+.newsletter-input button {
+  background-color: #222;
+  color: #fff;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  
+}
+
+.newsletter-input button:hover {
+  background-color: #444;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .newsletter {
+    width: 70%; /* Set the width to 50% on mobile */
+    padding: 20px 30px;
+    margin-left: 27px;
+    margin-top: -20px; /* Adjust padding for mobile */
+  }
+
+  .newsletter h1 {
+    font-size: 1.8rem; /* Slightly smaller font size for mobile */
+    margin-bottom: 15px;
+  }
+
+  .newsletter p {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+
+  .newsletter-input {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .newsletter-input input {
+    width: 90%; /* Make the input field full-width on mobile */
+    font-size: 0.9rem;
+  }
+
+  .newsletter-input button {
+    width: 40%; /* Make the button full-width on mobile */
+    font-size: 1rem;
+  }
+}

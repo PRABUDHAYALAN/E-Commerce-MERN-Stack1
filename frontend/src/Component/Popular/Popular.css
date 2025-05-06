@@ -1,0 +1,120 @@
+.popular {
+  padding: 40px 60px;
+  background: linear-gradient(to right, #ffe6dc, #b7e6e1);
+  text-align: center;
+}
+.popular h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: #222;
+  display: inline-block;
+  position: relative;
+}
+
+.popular h1::after {
+  content: '';
+  position: absolute;
+  left: 60px;
+  top: 50px; /* now positions the line 10px from the top of h1 */
+  width: 70%;
+  height: 4px;
+  background-color: #ff914d;
+  border-radius: 2px;
+}
+
+
+
+.popular-subtext {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.popular hr {
+  width: 80px;
+  margin: 20px auto;
+ 
+}
+
+.popular-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 30px;
+  justify-content: center;
+  margin-top: 30px;
+  margin-left: 10px;
+}
+
+
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .popular {
+    padding: 20px 30px;
+    margin-left: 33px;
+    margin-top: -395px;/* Adjust padding for smaller screens */
+  }
+
+  .popular h1 {
+    font-size: 28px; /* Slightly smaller font size for mobile */
+    margin-bottom: 18px;
+    margin-right: 30px;
+  
+  }
+
+  .popular h1::after {
+    margin-left: 50px; /* Adjust left positioning of the line */
+    margin-top: 7px; /* Adjust top position */
+    width: 90%; /* Reduce width of the line */
+  }
+
+  .popular-subtext {
+    font-size: 14px;
+    margin-right: 35px; /* Adjust font size for mobile */
+  }
+
+  .popular-items {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Reduce grid item size for mobile */
+    gap: 20px;
+    margin-right: 50px; /* Reduce gap between grid items */
+     /* Add left margin to the card container */
+  }
+
+  .popular-items image {
+    width: 200px; /* Ensure images scale down */
+    height: auto;
+     /* Maintain aspect ratio of the image */
+  }
+}
+
+@media (max-width: 480px) {
+  .popular {
+    padding: 15px 20px; /* Further reduce padding for smaller screens */
+  }
+
+  .popular h1 {
+    font-size: 24px; /* Even smaller font size for very small screens */
+    margin-bottom: 10px;
+  }
+
+  .popular h1::after {
+    left: 20px; /* Adjust the line position further */
+    top: 30px; /* Move line closer to the text */
+    width: 40%; /* Make the line shorter */
+  }
+
+  .popular-subtext {
+    font-size: 12px; /* Further reduce font size */
+  }
+
+  .popular-items {
+    grid-template-columns: 1fr; /* Stack items in a single column on very small screens */
+    gap: 15px; /* Reduce gap between items */
+    margin-left: 10px; /* Add left margin */
+  }
+
+  .popular-items img {
+    width: 100%; /* Ensure images take up full width of the container */
+    height: auto; /* Maintain aspect ratio */
+  }
+}

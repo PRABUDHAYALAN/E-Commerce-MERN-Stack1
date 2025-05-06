@@ -1,0 +1,100 @@
+/* Main container */
+.new-collection {
+  width: 100%;
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+/* Heading */
+.new-collection h1 {
+  font-size: 36px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 10px;
+  position: relative;
+  display: inline-block;
+}
+
+/* Underline effect for heading */
+.new-collection h1::after {
+  content: '';
+  display: block;
+  height: 4px;
+  width: 60%;
+  margin: 8px auto 0;
+  background-color: #ff914d;
+  border-radius: 2px;
+}
+
+/* Optional <hr> divider */
+.new-collection hr {
+  margin: 20px auto 40px;
+  width: 80px;
+  border: none;
+  height: 2px;
+ 
+  opacity: 0.8;
+}
+
+/* Description <p> tag */
+.collection-desc {
+  font-size: 1.1rem;
+  color: #555;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+/* Collection grid */
+.collections {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+  margin-top: 20px;
+}
+
+/* 
+/* ✅ Mobile Responsive */
+@media (max-width: 768px) {
+  .new-collection {
+    padding: 20px 30px; /* Adjust padding for smaller screens */
+    margin-left: -15px;
+    margin-top: -20px;
+     /* Adjust positioning */
+  }
+
+  .new-collection h1 {
+    font-size: 27px; /* Slightly smaller font size for mobile */
+    margin-bottom: 15px;
+    margin-right: 30px;
+  }
+
+  .new-collection h1::after {
+    margin-left: 70px; /* Adjust left positioning of the line */
+    margin-top: 7px;
+    width: 50%; /* Reduce width of the line */
+  }
+
+  .collection-desc {
+    font-size: 14px;
+    margin-right: 35px;
+    margin-bottom: -10px; /* Adjust font size for mobile */
+  }
+
+  .collections {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Reduce grid item size for mobile */
+    gap: 20px; /* Reduce gap between grid items */
+    margin-left: 38px;
+    margin-bottom: 10px; /* Add left margin to the card container */
+  }
+
+  .collections img {
+    width: 200px; /* Ensure images scale down */
+    height: auto; /* Maintain aspect ratio of the image */
+  }
+}

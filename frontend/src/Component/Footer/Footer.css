@@ -1,0 +1,144 @@
+.footer {
+  background-color: #222;
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; /* Stack all items vertically */
+  text-align: center;
+  width: 100%;
+  height: 250px; 
+  margin-top: 100px;/* Fixed height */
+}
+
+.footer-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px; /* Space between logo and other sections */
+}
+
+.footer-logo img {
+  width: 80px; /* Logo width */
+  margin-right: 10px;
+}
+
+.footer-logo p {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #ff914d;
+}
+
+/* Footer Links */
+.footer-links {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.footer-links li {
+  font-size: 1rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.footer-links li:hover {
+  color: #ff914d;
+}
+
+/* Social Icons */
+.footer-sociaL-icon {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.footer-icons-container {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: #e8dbdb;
+  transition: transform 0.3s ease;
+}
+
+.footer-icons-container img {
+  width: 24px;
+  height: 24px;
+}
+
+.footer-icons-container:hover {
+  transform: scale(1.1);
+  background-color: #ff914d;
+}
+
+.footer-copyright {
+  font-size: 0.9rem;
+  color: #bbb;
+  text-align: center;
+  width: 100%;
+}
+
+.footer-copyright hr {
+  margin-bottom: 10px;
+  border-color: #555;
+  width: 90%;
+  margin-left: 40px;
+}
+
+
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 15px;
+    margin-top: 50px;
+    height: 400px;
+    
+    margin-left: -20px;
+    
+  }
+
+  .footer-logo p {
+    font-size: 1.2rem;
+    margin-left: 10px; /* Smaller font size for mobile */
+  }
+
+  .footer-links {
+    flex-direction: column; /* Stack links vertically */
+    gap: 15px;
+  }
+
+  .footer-links li {
+    font-size: 0.9rem; /* Slightly smaller font size for mobile */
+  }
+
+  .footer-sociaL-icon {
+    gap: 15px;
+  }
+
+  .footer-icons-container {
+    width: 35px;
+    height: 35px;
+  }
+
+  .footer-icons-container img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .footer-copyright {
+    font-size: 0.8rem; /* Slightly smaller font size for mobile */
+  }
+
+  .footer-copyright hr {
+    width: 80%; /* Adjust the width of the horizontal line */
+    margin-left: 45px;
+  }
+}

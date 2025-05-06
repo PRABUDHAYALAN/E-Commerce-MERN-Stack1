@@ -1,0 +1,141 @@
+/* AddProduct.css */
+
+/* Main Add Product container */
+.add-product {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: #f9f9f9;
+    min-height: 100vh;
+  }
+  
+  /* Common field styling */
+  .addproduct-itemfield {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .addproduct-itemfield p {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+  }
+  
+  .addproduct-itemfield input,
+  .add-product-selector {
+    padding: 10px 14px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  
+  .addproduct-itemfield input:focus,
+  .add-product-selector:focus {
+    border-color: #007bff;
+  }
+  
+  /* Special container for price fields (side-by-side) */
+  .addproduct-price-container {
+    display: flex;
+    gap: 20px;
+  }
+  
+  /* Make sure both fields are equal width */
+  .addproduct-price-container .addproduct-itemfield {
+    flex: 1;
+  }
+  
+  /* Upload area */
+  .addproduct-thumnail-img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px dashed #bbb;
+    border-radius: 10px;
+    padding: 10px;
+    background: #fff;
+    transition: border-color 0.3s ease;
+  }
+  
+  .addproduct-thumnail-img:hover {
+    border-color: #007bff;
+  }
+  
+  /* Add button styling */
+  .addproduct-btn {
+    width: 150px;
+    padding: 12px 20px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    align-self: flex-start;
+    margin-top: 10px;
+  }
+  
+  .addproduct-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .add-product {
+      padding: 1rem;
+      gap: 1rem;
+      margin: 1rem auto; /* ✅ remove negative margin */
+      width: 80%;
+      box-sizing: border-box;
+      margin-left: 90px;
+      margin-top: -670px;
+    }
+  
+    .addproduct-itemfield {
+      width: 90%;
+    }
+  
+    .addproduct-itemfield p {
+      font-size: 13px;
+      margin-bottom: 0.3rem;
+    }
+  
+    .addproduct-itemfield input,
+    .add-product-selector {
+      font-size: 13px;
+      padding: 0.45rem 0.65rem;
+      width: 100%;
+      box-sizing: border-box;
+    }
+  
+    .addproduct-price-container {
+      display: flex;
+      flex-direction: column; /* ✅ stack fields */
+      gap: 1rem;
+      width: 100%;
+    }
+  
+    .addproduct-thumnail-img {
+      max-width: 100px;
+      height: auto;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+  
+    .addproduct-btn {
+      font-size: 14px;
+      padding: 0.75rem;
+      width: 100%;
+      box-sizing: border-box;
+    }
+  }
+  

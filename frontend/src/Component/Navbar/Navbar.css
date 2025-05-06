@@ -1,0 +1,221 @@
+/* Main Navbar Container */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 14px 30px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  flex-wrap: wrap;
+}
+
+/* Left: Logo + Hamburger */
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-logo img {
+  height: 40px;
+}
+
+.nav-logo p {
+  font-size: 24px;
+  font-weight: bold;
+  color: #171717;
+  margin: 0;
+}
+
+.hamburger {
+  font-size: 28px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: none;
+}
+
+/* Center: Menu */
+.nav-menu {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.nav-menu li a {
+  text-decoration: none;
+  font-size: 19px;
+  color: #2a2626;
+  font-weight: 500;
+  position: relative;
+}
+
+.nav-menu li a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #FF4141;
+}
+
+/* Right: Desktop Buttons & Cart */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-right button {
+  background: #FF4141;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.cart-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.cart-wrapper img {
+  width: 28px;
+}
+
+.cart-count {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background-color: #FF4141;
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+/* Mobile Only */
+.mobile-actions {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 12px;
+  align-items: flex-start;
+}
+
+.mobile-actions button {
+  background: #FF4141;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: 140px;
+    margin-right: 10px;
+  }
+
+  .nav-menu {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    padding: 10px;
+    background-color: #fff;
+    position: absolute;
+    top: 60px;
+    left: 200px;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-menu.active {
+    display: flex;
+  }
+
+  .nav-menu li {
+    padding: 5px 0;
+    width: 100%;
+    margin-left: 60px;
+  }
+
+  .nav-right {
+    display: none;
+    margin-left: -20px;
+  }
+
+  .mobile-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 50%;
+    justify-content: flex-start;
+    margin-top: -10px; /* Align contents to left */
+  }
+
+  .mobile-actions button,
+  .mobile-actions a button {
+    flex: 0 0 50%; /* Each button takes up half of .mobile-actions */
+    max-width: 50%;
+    box-sizing: border-box;
+    margin-left: 50px;
+  }
+
+  .cart-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 50%;
+    position: relative;
+  }
+
+  .cart-wrapper img {
+    width: 26px;
+  }
+
+  .cart-count {
+    font-size: 11px;
+    margin-left: -10px;
+    margin-right: 20px;
+    position: absolute;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 5px;
+  }
+  .cart-wrapper{
+    margin-left: 60px;
+  }
+
+  .admin-btn{
+    width: 80px;
+  }
+}

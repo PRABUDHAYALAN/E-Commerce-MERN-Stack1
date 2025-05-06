@@ -1,0 +1,45 @@
+.discriptionbox {
+    margin: 2rem 0;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 1.5rem;
+    background-color: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .descriptionbox-navigator {
+    display: flex;
+    border-bottom: 2px solid #f0f0f0;
+    margin-bottom: 1rem;
+  }
+  
+  .descriptionbox-nav-box {
+    padding: 0.8rem 1.5rem;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #111;
+    border-bottom: 3px solid #ff6f61;
+    transition: all 0.3s ease;
+  }
+  
+  .descriptionbox-nav-box.fade {
+    color: #555;
+    border-bottom: 3px solid transparent;
+  }
+  
+  .discriptionbox-description {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #333;
+  }
+  
+  .discriptionbox-description p {
+    margin-bottom: 1rem;
+  }
+
+
+
+  
+  
