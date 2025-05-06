@@ -41,7 +41,7 @@ const LoginSignup = () => {
   const signup = async ()=>{
     console.log("Signup Function executed",formData)
     let responseData;
-    await fetch("https://e-commerce-mern-stack-5.onrender.com/signup",{
+    await fetch("https://e-commerce-mern-stack1.onrender.com/signup",{
       method:"POST",
       headers:{
         Accept:"application/json",
