@@ -75,7 +75,7 @@ const AddProduct = () => {
       const formData = new FormData();
       formData.append("product", image);
 
-      const uploadResponse = await fetch("https://e-commerce-mern-stack-5.onrender.com/upload", {
+      const uploadResponse = await fetch("https://e-commerce-mern-stack1.onrender.com/upload", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -103,7 +103,7 @@ const AddProduct = () => {
       };
 
       // Add product
-      const addResponse = await fetch("https://e-commerce-mern-stack-5.onrender.com/addproduct", {
+      const addResponse = await fetch("https://e-commerce-mern-stack1.onrender.com/addproduct", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

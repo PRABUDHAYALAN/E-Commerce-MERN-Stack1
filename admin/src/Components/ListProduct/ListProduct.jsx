@@ -10,7 +10,7 @@ const ListProduct = () => {
   const fetchInfo = async () => {
     try {
       setLoading(true);
-      const res = await fetch("https://e-commerce-mern-stack-5.onrender.com/allproducts");
+      const res = await fetch("https://e-commerce-mern-stack1.onrender.com/allproducts");
       const data = await res.json();
       setAllProducts(data);
       setLoading(false);
@@ -30,7 +30,7 @@ const ListProduct = () => {
       // Optimistic UI: update immediately
       setAllProducts(prev => prev.filter(product => product.id !== id));
 
-      await fetch("https://e-commerce-mern-stack-5.onrender.com/removeproduct", {
+      await fetch("https://e-commerce-mern-stack1.onrender.com/removeproduct", {
         method: "POST",
         headers: {
           Accept: "application/json",
