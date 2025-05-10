@@ -5,12 +5,14 @@ import Shop from "./Pages/Shop.jsx";
 import Product from "./Pages/Product.jsx";
 import Cart from "./Pages/Cart.jsx";
 import LoginSignup from "./Pages/LoginSignup.jsx";
+
 import './index.css';
 import Footer from "./Component/Footer/Footer.jsx";
 import men_banner from './Component/assets/banner_mens2.png'
 import women_banner from './Component/assets/banner_womens1.png'
 import kid_banner from './Component/assets/banner_kids1.png'
 import Checkout from "./Pages/Checkout.jsx";
+
 function App() {
   return (
     <div>
@@ -26,6 +28,7 @@ function App() {
   <Route path='/cart' element={<Cart/>}/>
   <Route path="/checkout" element={<Checkout />} />
   <Route path='login' element={<LoginSignup/>}/>
+  
  </Routes>
  <Footer/>
  

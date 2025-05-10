@@ -15,7 +15,7 @@
   content: '';
   position: absolute;
   left: 60px;
-  top: 50px; /* now positions the line 10px from the top of h1 */
+  top: 50px; 
   width: 70%;
   height: 4px;
   background-color: #ff914d;

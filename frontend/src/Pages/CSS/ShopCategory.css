@@ -84,7 +84,7 @@
   height: 45px;
   font-weight: 600;
   font-size: 16px;
-  background-color: #ff914d;
+  background-color:  #ff4141;
   color: white;
   border-radius: 20px;
   cursor: pointer;
@@ -95,6 +95,35 @@
 .shopcategory-loadmore:hover {
   background-color: #e27c35;
 }
+.shopcategory-sort {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  position: relative;
+  background-color: transparent;
+}
+
+.shopcategory-sort select {
+  padding: 8px 15px;
+  font-size: 15px;
+  border: 1px solid #d5d9d9;
+  border-radius: 5px;
+  background-color: #f7f9fa;
+  width: 100px;
+  color: #111;
+  cursor: pointer;
+  outline: none;
+  appearance: none;
+  transition: background-color 0.3s;
+}
+
+.sort-icon {
+  position: absolute;
+  right: 10px;
+  pointer-events: none;
+  color: #555;
+}
+
 
 
 

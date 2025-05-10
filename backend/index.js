@@ -103,14 +103,13 @@ app.post("/signup", async (req, res) => {
     if (check) {
         return res.status(400).json({ success: false, errors: "User already exists" });
     }
-    let cart = {};
-    for (let i = 0; i < 300; i++) cart[i] = 0;
 
+    // 🟢 Properly initialize as an empty object
     const user = new User({
         name: req.body.username,
         email: req.body.email,
         password: req.body.password,
-        cartData: cart
+        cartData: {} 
     });
 
     await user.save();
@@ -120,6 +119,8 @@ app.post("/signup", async (req, res) => {
     res.json({ success: true, token });
 });
 
+
+   
 app.post("/login", async (req, res) => {
     let user = await User.findOne({ email: req.body.email });
     if (user && req.body.password === user.password) {
@@ -158,9 +159,31 @@ const fetchUser = async (req, res, next) => {
 
 app.post('/addtocart', fetchUser, async (req, res) => {
     let userData = await User.findOne({ _id: req.user.id });
-    userData.cartData[req.body.itemId] += 1;
-    await User.findOneAndUpdate({ _id: req.user.id }, { cartData: userData.cartData });
-    res.send("Added");
+
+    // 🟢 Ensure cartData is always defined:
+    if (!userData.cartData) {
+        userData.cartData = {};
+    }
+
+    // 🟢 Ensure the product array is initialized:
+    if (!userData.cartData[req.body.itemId]) {
+        userData.cartData[req.body.itemId] = [];
+    }
+
+    // 🔍 Find the existing item by size:
+    const existingItem = userData.cartData[req.body.itemId].find(
+        (item) => item.size === req.body.size
+    );
+
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        userData.cartData[req.body.itemId].push({ size: req.body.size, quantity: 1 });
+    }
+
+    // 🟢 Finally, update the user data:
+    await User.findOneAndUpdate({ _id: req.user.id }, { cartData: userData.cartData }, { new: true });
+    res.json({ success: true, message: "Added to cart" });
 });
 
 app.post('/removefromcart', fetchUser, async (req, res) => {
@@ -172,7 +195,7 @@ app.post('/removefromcart', fetchUser, async (req, res) => {
     res.send("Removed");
 });
 
-app.post('/getcart', fetchUser, async (req, res) => {
+app.get('/getcart', fetchUser, async (req, res) => {
     let userData = await User.findOne({ _id: req.user.id });
     res.json(userData.cartData);
 });

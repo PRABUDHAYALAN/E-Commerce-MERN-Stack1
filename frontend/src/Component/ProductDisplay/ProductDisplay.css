@@ -118,7 +118,7 @@
   margin-top: 1rem;
   margin-bottom: 1rem; /* 🔥 added spacing below button */
   padding: 0.75rem 1.5rem;
-  background-color: #ff6f61;
+  background-color: #ff4141;
   color: white;
   font-weight: 600;
   font-size: 1rem;
@@ -130,7 +130,7 @@
 }
 
 .productdisplay-right button:hover {
-  background-color: #e4574c;
+  background-color: #20c53b;
 }
 
 .productdisplay-right-category {
