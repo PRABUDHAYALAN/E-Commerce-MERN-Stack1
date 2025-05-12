@@ -1,5 +1,5 @@
 .newsletter {
-  width: 84%;
+  width: 80%;
   padding: 60px 20px;
   background: linear-gradient(180deg, #ffde59, #ff914d);
   text-align: center;
@@ -7,7 +7,7 @@
   color: #222;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
   margin-top: 100px;
-  margin-left: 85px;
+  margin-left: 125px;
 }
 
 .newsletter h1 {

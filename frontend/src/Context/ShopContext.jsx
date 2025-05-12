@@ -15,13 +15,13 @@ const ShopContextProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
 
   useEffect(() => {
-    fetch("https://e-commerce-mern-stack1.onrender.com/allproducts")
+    fetch("http://localhost:4000/allproducts")
       .then((response) => response.json())
       .then((data) => {
         setAll_Product(data);
 
         if (localStorage.getItem("auth-token")) {
-          fetch("https://e-commerce-mern-stack1.onrender.com/getcart", {
+          fetch("http://localhost:4000/getcart", {
             method: "GET",
             headers: {
               Accept: "application/json",
@@ -68,7 +68,7 @@ const ShopContextProvider = (props) => {
     });
 
     if (localStorage.getItem("auth-token")) {
-      fetch("https://e-commerce-mern-stack1.onrender.com/addtocart", {
+      fetch("http://localhost:4000/addtocart", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -84,11 +84,12 @@ const ShopContextProvider = (props) => {
   };
 
   const removeFromCart = (itemId, size) => {
+    // 🟢 Local State Update
     setCartItems((prev) => {
       const newCart = { ...prev };
-      if (Array.isArray(newCart[itemId])) {
+      if (newCart[itemId]) {
         const itemIndex = newCart[itemId].findIndex((item) => item.size === size);
-
+  
         if (itemIndex !== -1) {
           if (newCart[itemId][itemIndex].quantity > 1) {
             newCart[itemId][itemIndex].quantity -= 1;
@@ -96,14 +97,37 @@ const ShopContextProvider = (props) => {
             newCart[itemId].splice(itemIndex, 1);
           }
         }
-
+  
         if (newCart[itemId].length === 0) {
           delete newCart[itemId];
         }
       }
       return newCart;
     });
+  
+    // 🟢 Backend Update
+    if (localStorage.getItem('auth-token')) {
+      fetch('http://localhost:4000/removefromcart', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'auth-token': `${localStorage.getItem('auth-token')}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ itemId, size })
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          console.log("Item removed from backend");
+        } else {
+          console.error("Failed to remove item from backend:", data.message);
+        }
+      })
+      .catch((error) => console.error("Error removing from cart:", error.message));
+    }
   };
+  
 
   const getTotalCartAmount = () => {
     let totalAmount = 0;

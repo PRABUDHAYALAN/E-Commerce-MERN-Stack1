@@ -186,14 +186,43 @@ app.post('/addtocart', fetchUser, async (req, res) => {
     res.json({ success: true, message: "Added to cart" });
 });
 
+
+
+
+
 app.post('/removefromcart', fetchUser, async (req, res) => {
+    const { itemId, size } = req.body;
     let userData = await User.findOne({ _id: req.user.id });
-    if (userData.cartData[req.body.itemId] > 0) {
-        userData.cartData[req.body.itemId] -= 1;
+
+    if (!userData.cartData || !userData.cartData[itemId]) {
+        return res.status(404).json({ success: false, message: "Item not found in cart" });
     }
-    await User.findOneAndUpdate({ _id: req.user.id }, { cartData: userData.cartData });
-    res.send("Removed");
+
+    const itemIndex = userData.cartData[itemId].findIndex(item => item.size === size);
+
+    if (itemIndex === -1) {
+        return res.status(404).json({ success: false, message: "Item size not found in cart" });
+    }
+
+    if (userData.cartData[itemId][itemIndex].quantity > 1) {
+        userData.cartData[itemId][itemIndex].quantity -= 1;
+    } else {
+        userData.cartData[itemId].splice(itemIndex, 1);
+
+        if (userData.cartData[itemId].length === 0) {
+            delete userData.cartData[itemId];
+        }
+    }
+
+    await User.findOneAndUpdate(
+        { _id: req.user.id },
+        { cartData: userData.cartData },
+        { new: true }
+    );
+
+    res.json({ success: true, message: "Item removed from cart" });
 });
+
 
 app.get('/getcart', fetchUser, async (req, res) => {
     let userData = await User.findOne({ _id: req.user.id });
