@@ -94,9 +94,11 @@ const User = mongoose.model("User", {
     name: { type: String },
     email: { type: String, unique: true },
     password: { type: String },
+    profileImage: { type: String },
     cartData: { type: Object },
     date: { type: Date, default: Date.now }
 });
+
 
 app.post("/signup", async (req, res) => {
     let check = await User.findOne({ email: req.body.email });
@@ -132,6 +134,94 @@ app.post("/login", async (req, res) => {
     }
 });
 
+// Middleware for User Authentication
+const fetchUser = async (req, res, next) => {
+    const token = req.header('auth-token');
+    if (!token) return res.status(401).send({ errors: "Please authenticate using a valid token" });
+
+    try {
+        const data = jwt.verify(token, 'secret_ecom');
+        req.user = data.user;
+        next();
+    } catch (error) {
+        res.status(401).send({ errors: "Invalid token" });
+    }
+};
+
+// All routes that use fetchUser should come **after** this
+app.get('/api/user/profile', fetchUser, async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id).select('-password');
+        if (!user) {
+            return res.status(404).json({ success: false, message: "User not found" });
+        }
+        res.json({ 
+            success: true, 
+            user: {
+                name: user.name,
+                email: user.email,
+                profileImage: user.profileImage || ''
+            }
+        });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+});
+
+app.put('/api/user/profile', fetchUser, upload.single('profileImage'), async (req, res) => {
+    try {
+        const updates = {
+            name: req.body.name,
+            ...(req.body.password && { password: req.body.password }),
+            ...(req.file && { profileImage: req.file.path })
+        };
+
+        const user = await User.findByIdAndUpdate(
+            req.user.id, 
+            updates,
+            { new: true }
+        ).select('-password');
+
+        res.json({ 
+            success: true, 
+            user: {
+                name: user.name,
+                email: user.email,
+                profileImage: user.profileImage || ''
+            }
+        });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 app.get("/newcollections", async (req, res) => {
     let products = await Product.find({});
     let newCollection = products.slice(1).slice(-8);
@@ -144,18 +234,7 @@ app.get("/popularinwomen", async (req, res) => {
     res.send(popular_in_women);
 });
 
-// Middleware for User Authentication
-const fetchUser = async (req, res, next) => {
-    const token = req.header('auth-token');
-    if (!token) return res.status(401).send({ errors: "Please authenticate using a valid token" });
-    try {
-        const data = jwt.verify(token, 'secret_ecom');
-        req.user = data.user;
-        next();
-    } catch (error) {
-        res.status(401).send({ errors: "Invalid token" });
-    }
-};
+
 
 app.post('/addtocart', fetchUser, async (req, res) => {
     let userData = await User.findOne({ _id: req.user.id });

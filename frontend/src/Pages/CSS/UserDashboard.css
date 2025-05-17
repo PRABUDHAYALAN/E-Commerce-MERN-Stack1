@@ -1,0 +1,98 @@
+.user-dashboard {
+  display: flex;
+  height: 100vh;
+  background-color: #f9f9f9;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background-color: #1d1f2b;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 15px;
+}
+
+/* Back Button */
+.back-btn {
+  display: flex;
+  align-items: center;
+  background-color: #262a3b;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 8px 12px;
+  transition: background-color 0.3s;
+  margin-bottom: 20px;
+  margin-right: 30px;
+}
+
+.back-btn svg {
+  margin-right: 5px;
+}
+
+.back-btn:hover {
+  background-color: #3a3f58;
+}
+
+/* Sidebar Menu */
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.sidebar-menu li {
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.sidebar-menu li:hover {
+  background-color: #2b2f41;
+}
+
+.sidebar-menu a {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.sidebar-menu .icon {
+  margin-right: 10px;
+}
+
+/* Logout button style */
+.logout {
+  color: #f44336;
+  font-weight: bold;
+}
+
+.logout:hover {
+  background-color: #a72e2e;
+  color: white;
+}
+
+/* Content */
+.content {
+  flex: 1;
+  padding: 20px;
+  background-color: #f9f9f9;
+}

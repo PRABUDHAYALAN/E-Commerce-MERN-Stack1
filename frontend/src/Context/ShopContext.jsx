@@ -2,6 +2,7 @@ import React, { createContext, useState, useEffect } from "react";
 
 export const ShopContext = createContext(null);
 
+// Helper function to initialize the default cart structure
 const getDefaultCart = (products) => {
   let cart = {};
   for (let i = 0; i < products.length; i++) {
@@ -14,18 +15,21 @@ const ShopContextProvider = (props) => {
   const [all_product, setAll_Product] = useState([]);
   const [cartItems, setCartItems] = useState({});
 
+  // 🟢 Fetch products and initialize cart
   useEffect(() => {
-    fetch("https://e-commerce-mern-stack1.onrender.com/allproducts")
+    fetch("http://localhost:4000/allproducts")
       .then((response) => response.json())
       .then((data) => {
         setAll_Product(data);
 
-        if (localStorage.getItem("auth-token")) {
-          fetch("https://e-commerce-mern-stack1.onrender.com/getcart", {
+        // 🟢 Fetch cart data if user is authenticated
+        const token = localStorage.getItem("auth-token");
+        if (token) {
+          fetch("http://localhost:4000/getcart", {
             method: "GET",
             headers: {
               Accept: "application/json",
-              "auth-token": `${localStorage.getItem("auth-token")}`,
+              "auth-token": token,
               "Content-Type": "application/json",
             },
           })
@@ -50,6 +54,7 @@ const ShopContextProvider = (props) => {
       .catch((error) => console.error("Error fetching products:", error));
   }, []);
 
+  // 🟢 Add to Cart
   const addToCart = (id, size) => {
     setCartItems((prev) => {
       const newCart = { ...prev };
@@ -67,12 +72,13 @@ const ShopContextProvider = (props) => {
       return newCart;
     });
 
-    if (localStorage.getItem("auth-token")) {
-      fetch("https://e-commerce-mern-stack1.onrender.com/addtocart", {
+    const token = localStorage.getItem("auth-token");
+    if (token) {
+      fetch("http://localhost:4000/addtocart", {
         method: "POST",
         headers: {
           Accept: "application/json",
-          "auth-token": `${localStorage.getItem("auth-token")}`,
+          "auth-token": token,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ itemId: id, size }),
@@ -83,13 +89,13 @@ const ShopContextProvider = (props) => {
     }
   };
 
+  // 🟢 Remove from Cart
   const removeFromCart = (itemId, size) => {
-    // 🟢 Local State Update
     setCartItems((prev) => {
       const newCart = { ...prev };
       if (newCart[itemId]) {
         const itemIndex = newCart[itemId].findIndex((item) => item.size === size);
-  
+
         if (itemIndex !== -1) {
           if (newCart[itemId][itemIndex].quantity > 1) {
             newCart[itemId][itemIndex].quantity -= 1;
@@ -97,38 +103,38 @@ const ShopContextProvider = (props) => {
             newCart[itemId].splice(itemIndex, 1);
           }
         }
-  
+
         if (newCart[itemId].length === 0) {
           delete newCart[itemId];
         }
       }
       return newCart;
     });
-  
-    // 🟢 Backend Update
-    if (localStorage.getItem('auth-token')) {
-      fetch('https://e-commerce-mern-stack1.onrender.com/removefromcart', {
-        method: 'POST',
+
+    const token = localStorage.getItem("auth-token");
+    if (token) {
+      fetch("http://localhost:4000/removefromcart", {
+        method: "POST",
         headers: {
-          Accept: 'application/json',
-          'auth-token': `${localStorage.getItem('auth-token')}`,
-          'Content-Type': 'application/json',
+          Accept: "application/json",
+          "auth-token": token,
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ itemId, size })
+        body: JSON.stringify({ itemId, size }),
       })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          console.log("Item removed from backend");
-        } else {
-          console.error("Failed to remove item from backend:", data.message);
-        }
-      })
-      .catch((error) => console.error("Error removing from cart:", error.message));
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            console.log("Item removed from backend");
+          } else {
+            console.error("Failed to remove item from backend:", data.message);
+          }
+        })
+        .catch((error) => console.error("Error removing from cart:", error.message));
     }
   };
-  
 
+  // 🟢 Get Total Amount of Cart Items
   const getTotalCartAmount = () => {
     let totalAmount = 0;
     for (const itemId in cartItems) {
@@ -145,6 +151,7 @@ const ShopContextProvider = (props) => {
     return totalAmount;
   };
 
+  // 🟢 Get Total Number of Items in the Cart
   const getTotalCartItems = () => {
     let totalItem = 0;
     for (const itemId in cartItems) {
@@ -158,6 +165,7 @@ const ShopContextProvider = (props) => {
     return totalItem;
   };
 
+  // 🟢 Context Values
   const contextValue = {
     getTotalCartItems,
     getTotalCartAmount,
@@ -167,6 +175,7 @@ const ShopContextProvider = (props) => {
     removeFromCart,
   };
 
+  // 🟢 Return Provider
   return (
     <ShopContext.Provider value={contextValue}>
       {props.children}
