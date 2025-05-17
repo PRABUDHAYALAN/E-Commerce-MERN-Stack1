@@ -17,7 +17,7 @@ const ShopContextProvider = (props) => {
 
   // 🟢 Fetch products and initialize cart
   useEffect(() => {
-    fetch("http://localhost:4000/allproducts")
+    fetch("https://e-commerce-mern-stack1.onrender.com/allproducts")
       .then((response) => response.json())
       .then((data) => {
         setAll_Product(data);
@@ -25,7 +25,7 @@ const ShopContextProvider = (props) => {
         // 🟢 Fetch cart data if user is authenticated
         const token = localStorage.getItem("auth-token");
         if (token) {
-          fetch("http://localhost:4000/getcart", {
+          fetch("https://e-commerce-mern-stack1.onrender.com/getcart", {
             method: "GET",
             headers: {
               Accept: "application/json",
@@ -74,7 +74,7 @@ const ShopContextProvider = (props) => {
 
     const token = localStorage.getItem("auth-token");
     if (token) {
-      fetch("http://localhost:4000/addtocart", {
+      fetch("https://e-commerce-mern-stack1.onrender.com/addtocart", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -113,7 +113,7 @@ const ShopContextProvider = (props) => {
 
     const token = localStorage.getItem("auth-token");
     if (token) {
-      fetch("http://localhost:4000/removefromcart", {
+      fetch("https://e-commerce-mern-stack1.onrender.com/removefromcart", {
         method: "POST",
         headers: {
           Accept: "application/json",

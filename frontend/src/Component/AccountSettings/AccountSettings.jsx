@@ -28,7 +28,7 @@ const AccountSettings = () => {
           return;
         }
 
-        const response = await axios.get('http://localhost:4000/api/user/profile', {
+        const response = await axios.get('https://e-commerce-mern-stack1.onrender.com/api/user/profile', {
           headers: {
             'auth-token': token
           }
@@ -90,7 +90,7 @@ const AccountSettings = () => {
       if (userData.password) formData.append('password', userData.password);
       if (selectedImage) formData.append('profileImage', selectedImage);
 
-      const response = await axios.put('http://localhost:4000/api/user/profile', formData, {
+      const response = await axios.put('https://e-commerce-mern-stack1.onrender.com/api/user/profile', formData, {
         headers: {
           'auth-token': token,
           'Content-Type': 'multipart/form-data'
